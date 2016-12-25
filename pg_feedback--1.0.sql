@@ -5,8 +5,8 @@ RETURNS json AS $$
 	SELECT
 		json_build_object(
 		'uuid', 'XXX-XXX-XXX-XXX',	-- FIXME
-		'version', (SELECT version()),
-		'pgpro_version', (SELECT pgpro_version()),
+		'version', (SELECT SUBSTRING((SELECT version()), '[A-z]+\s+([0-9\.]+)\s+.*')),
+		'pgpro_version', (SELECT SUBSTRING((SELECT version()), '[A-z]+\s+([0-9\.]+)\s+.*')),
 		'pgpro_edition', (SELECT pgpro_edition()),
 		'feedback_version', (SELECT version FROM pg_available_extension_versions WHERE name='pg_feedback'),
 		'settings', (SELECT json_agg(s) FROM
