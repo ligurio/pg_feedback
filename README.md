@@ -2,7 +2,7 @@
 
 This module adds statistic report about PostgreSQL usage.
 
-```
+```shell
 $ psql -c 'CREATE EXTENSION pg_feedback;'
 $ psql -c 'SELECT feedback();'
 ```
