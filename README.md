@@ -8,10 +8,15 @@ $ psql -c 'SELECT feedback();'
 ```
 
 ```json
+
+
 {
-  "version": "PostgreSQL 9.6.1 on x86_64-apple-darwin15.6.0, compiled by Apple LLVM version 8.0.0 (clang-800.0.42.1), 64-bit",
-  "pgpro_version": "PostgresPro 9.6.1.2 on x86_64-apple-darwin15.6.0, compiled by Apple LLVM version 8.0.0 (clang-800.0.42.1), 64-bit",
+  "uuid": "XXX-XXX-XXX-XXX",
+  "name": "PostgreSQL",
+  "version": "9.6.1",
+  "pgpro_version": "9.6.1",
   "pgpro_edition": "standard",
+  "feedback_version": "1.0",
   "settings": [
     {
       "name": "lc_collate",
@@ -28,6 +33,19 @@ $ psql -c 'SELECT feedback();'
     {
       "name": "work_mem",
       "setting": "4096"
+    }
+  ],
+  "extensions": [
+    {
+      "name": "adminpack",
+      "comment": "administrative functions for PostgreSQL",
+      "default_version": "1.0"
+    },
+    .....
+    {
+      "name": "fuzzystrmatch",
+      "comment": "determine similarities and distance between strings",
+      "default_version": "1.1"
     }
   ],
   "databases_size": {
