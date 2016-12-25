@@ -5,6 +5,7 @@ RETURNS json AS $$
 	SELECT
 		json_build_object(
 		'uuid', 'XXX-XXX-XXX-XXX',	-- FIXME
+		'name', (SELECT SUBSTRING((SELECT version()), '([A-z]+)\s+.*')),
 		'version', (SELECT SUBSTRING((SELECT version()), '[A-z]+\s+([0-9\.]+)\s+.*')),
 		'pgpro_version', (SELECT SUBSTRING((SELECT version()), '[A-z]+\s+([0-9\.]+)\s+.*')),
 		'pgpro_edition', (SELECT pgpro_edition()),
