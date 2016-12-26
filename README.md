@@ -1,6 +1,6 @@
-## pg_feedback
+# pg_feedback
 
-This module adds statistic report about PostgreSQL usage.
+This module generates a report about PostgreSQL usage.
 
 ```shell
 $ psql -c 'CREATE EXTENSION pg_feedback;'
