@@ -1,5 +1,7 @@
 # pg_feedback
 
+[![Build Status](https://travis-ci.org/ligurio/pg_feedback.svg?branch=master)](https://travis-ci.org/ligurio/pg_feedback)
+
 This module generates a report about PostgreSQL usage.
 
 ```shell
