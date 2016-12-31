@@ -1,0 +1,36 @@
+os:
+  - linux
+
+sudo: required
+dist: trusty
+language: c
+
+#compiler:
+#  - clang
+#  - gcc
+
+env:
+  - PGVERSION=9.0
+  - PGVERSION=9.1
+  - PGVERSION=9.2
+  - PGVERSION=9.3
+  - PGVERSION=9.4
+  - PGVERSION=9.5
+  - PGVERSION=9.6
+
+before_install:
+  - wget https://gist.github.com/petere/5893799/raw/apt.postgresql.org.sh
+  - sudo sh ./apt.postgresql.org.sh
+
+script:
+  - packages="postgresql-$PGVERSION postgresql-server-dev-$PGVERSION postgresql-common"
+  - sudo service postgresql stop
+  - echo 'exit 0' | sudo tee /etc/init.d/postgresql
+  - sudo apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" install $packages
+  - sudo /etc/init.d/postgresql restart
+  - sudo chmod a+x /etc/init.d/postgresql
+  - sudo pg_createcluster --start $PGVERSION test -p 55435 -- -A trust
+  - make all PG_CONFIG=/usr/lib/postgresql/$PGVERSION/bin/pg_config
+  - sudo make install PG_CONFIG=/usr/lib/postgresql/$PGVERSION/bin/pg_config
+  - PGPORT=55435 make installcheck PGUSER=postgres PG_CONFIG=/usr/lib/postgresql/$PGVERSION/bin/pg_config; true
+  - if test -f regression.diffs; then cat regression.diffs; fi
