@@ -7,8 +7,6 @@ RETURNS json AS $$
 		'uuid', 'XXX-XXX-XXX-XXX',	-- FIXME
 		'name', (SELECT SUBSTRING((SELECT version()), '([A-z]+)\s+.*')),
 		'version', (SELECT SUBSTRING((SELECT version()), '[A-z]+\s+([0-9\.]+)\s+.*')),
-		'pgpro_version', (SELECT SUBSTRING((SELECT version()), '[A-z]+\s+([0-9\.]+)\s+.*')),
-		'pgpro_edition', (SELECT pgpro_edition()),
 		'feedback_version', (SELECT version FROM pg_available_extension_versions WHERE name='pg_feedback'),
 		'settings', (SELECT json_agg(s) FROM
 					(SELECT name,setting FROM pg_settings WHERE
