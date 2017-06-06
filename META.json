@@ -1,0 +1,38 @@
+{
+   "name": "pg_feedback",
+   "abstract": "PostgreSQL usage",
+   "description": "The `pg_feedback` module generates a report about PostgreSQL usage.",
+   "version": "0.1.0",
+   "maintainer": [
+      "Sergey Bronnikov <sergeyb@bronevichok.ru>"
+   ],
+   "license": "postgresql",
+   "resources": {
+      "bugtracker": {
+         "web": "https://github.com/ligurio/pg_feedback/issues"
+      },
+      "repository": {
+        "url":  "git://github.com:ligurio/pg_feedback.git",
+        "web":  "https://github.com/ligurio/pg_feedback",
+        "type": "git"
+      }
+   },
+   "generated_by": "Sergey Bronnikov",
+   "provides": {
+       "pg_feedback": {
+           "file": "pg_feedback--1.0.sql",
+           "docfile": "README.md",
+           "version": "0.1.0",
+           "abstract": "PostgreSQL usage"
+      }
+   },
+   "meta-spec": {
+      "version": "1.0.0",
+      "url": "http://pgxn.org/meta/spec.txt"
+   },
+   "tags": [
+      "feedback",
+      "usage",
+      "quality"
+   ]
+}
