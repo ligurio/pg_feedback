@@ -1,7 +1,7 @@
 # pg_feedback
 
 [![Build Status](https://travis-ci.org/ligurio/pg_feedback.svg?branch=master)](https://travis-ci.org/ligurio/pg_feedback)
-[![PGXN version](https://badge.fury.io/pg/pg_feedback)](https://badge.fury.io/pg/pg_feedback)
+[![PGXN version](https://badge.fury.io/pg/pg_feedback.svg)](https://badge.fury.io/pg/pg_feedback)
 
 This module generates a report about PostgreSQL usage.
 
