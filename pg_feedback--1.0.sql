@@ -1,7 +1,10 @@
 -- complain if script is sourced in psql, rather than via CREATE EXTENSION
 \echo Use "CREATE EXTENSION pg_feedback" to load this file. \quit
-CREATE FUNCTION feedback()
+CREATE OR REPLACE FUNCTION feedback()
 RETURNS json AS $$
+DECLARE
+result json;
+BEGIN
 	SELECT
 		json_build_object(
 		'uuid', 'XXX-XXX-XXX-XXX',	-- FIXME
@@ -14,10 +17,11 @@ RETURNS json AS $$
 							name='lc_ctype' OR
 							name='shared_buffers' OR
 							name='work_mem') s),
-		--'extensions', (SELECT json_agg(e) FROM (SELECT extname AS e FROM pg_extension) e),
 		'extensions', (SELECT json_agg(e) FROM
 					(SELECT name,comment,default_version FROM pg_available_extensions) e),
 		'databases_size', (SELECT row_to_json(s) FROM
 					(SELECT SUM(pg_database_size(pg_database.datname)) AS size FROM pg_database) s)
-	);
-  $$ LANGUAGE sql;
+	) INTO result;
+RETURN result;
+END;
+$$ LANGUAGE sql;
