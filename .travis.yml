@@ -23,4 +23,4 @@ before_script:
 
 script:
   - psql -c 'CREATE EXTENSION pg_feedback;' -p 55435 -U postgres
-  - psql -c 'SELECT feedback();' -p 55435 -U postgres
+  - psql -c 'SELECT feedback();' -p 55435 -U postgres --tuples-only --no-align | python -m json.tool
