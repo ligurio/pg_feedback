@@ -1,3 +1,4 @@
 comment = 'PostgreSQL feedback plugin'
 default_version = '1.0'
+module_pathname='$libdir/pg_feedback'
 relocatable = true
