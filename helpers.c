@@ -1,19 +1,19 @@
-#include <err.h>
 #include <fcntl.h>
+#include <time.h>
+#include <err.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/stat.h>
-#include <sys/types.h>
 #include <sys/utsname.h>
-#include <time.h>
+#include <sys/types.h>
 
 #include "helpers.h"
 
+#include <postgres.h>
 #include <catalog/pg_control.h>
 #include <common/controldata_utils.h>
 #include <miscadmin.h>
-#include <postgres.h>
 
 #ifdef _WIN32
 #include <windows.h>

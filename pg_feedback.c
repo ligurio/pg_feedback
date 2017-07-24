@@ -7,15 +7,17 @@
  *-------------------------------------------------------------------------
  */
 
-#include "common/controldata_utils.h"
-#include "fmgr.h"
+#include <stdlib.h>
+#include "postgres.h"
+#include <inttypes.h>
+#include <unistd.h>
 #include "funcapi.h"
+#include "fmgr.h"
 #include "miscadmin.h"
 #include "postgres.h"
 #include "utils/builtins.h"
+#include "common/controldata_utils.h"
 #include <inttypes.h>
-#include <stdlib.h>
-#include <unistd.h>
 
 #include "helpers.h"
 
