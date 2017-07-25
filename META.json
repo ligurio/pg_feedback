@@ -2,7 +2,7 @@
    "name": "pg_feedback",
    "abstract": "PostgreSQL usage",
    "description": "The `pg_feedback` module generates a report about PostgreSQL usage.",
-   "version": "0.1.0",
+   "version": "0.2.0",
    "maintainer": [
       "Sergey Bronnikov <sergeyb@bronevichok.ru>"
    ],
@@ -22,7 +22,7 @@
        "pg_feedback": {
            "file": "pg_feedback--1.0.sql",
            "docfile": "README.md",
-           "version": "0.1.0",
+           "version": "0.2.0",
            "abstract": "PostgreSQL usage"
       }
    },
