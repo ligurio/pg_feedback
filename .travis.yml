@@ -13,11 +13,13 @@ compiler:
 
 env:
   - PGVERSION=9.6
+  - PGVERSION=10
 
 matrix:
   exclude:
   - os: osx
     env: PGVERSION=9.6
+    env: PGVERSION=10
 
 before_install:
   - wget https://gist.github.com/petere/5893799/raw/apt.postgresql.org.sh
