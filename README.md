@@ -14,4 +14,4 @@ See example of usage report in Travis CI - https://travis-ci.org/ligurio/pg_feed
 
 [MariaDB Feedback](https://github.com/ligurio/pg_feedback/wiki/MariaDB_Feedback)
 
-Copyright (c) 2016-2017, Sergey Bronnikov <sergeyb@bronevichok.ru>
+Copyright (c) 2016-2019, Sergey Bronnikov <estetus@gmail.com>
