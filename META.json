@@ -4,7 +4,7 @@
    "description": "The `pg_feedback` module generates a report about PostgreSQL usage.",
    "version": "0.2.1",
    "maintainer": [
-      "Sergey Bronnikov <sergeyb@bronevichok.ru>"
+      "Sergey Bronnikov <estetus@gmail.com>"
    ],
    "license": "postgresql",
    "resources": {
