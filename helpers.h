@@ -1,6 +1,10 @@
 #ifndef HELPERS_H_INCLUDED
 #define HELPERS_H_INCLUDED
 
+#include <stdint.h>
+#include <sys/types.h>
+#include <unistd.h>
+
 #ifdef __linux__
 #include <linux/magic.h>
 #endif
@@ -22,10 +26,7 @@ typedef struct os_info
 
 osinfo* get_os_info( void );
 hwinfo* get_hw_info( void );
-char* system_db_id( void );
 char* dirfs( char* path );
-int get_proc_info( pid_t pid );
-int proc_uptime( int pid );
 long long int get_proc_uptime( pid_t pid );
 char* lookup_fstype( long fstype );
 

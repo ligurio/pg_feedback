@@ -23,8 +23,9 @@ fmt:
 static:
 	@cppcheck ${CPPCHECK_OPT}
 
-test:
-	gcc tests.c -o tests -lcmocka
+test: tests.c helpers.c
+	gcc tests.c helpers.c -o tests -lcmocka
+	./tests
 
 
 .PHONY: fmt static

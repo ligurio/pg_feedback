@@ -2,24 +2,45 @@
  *
  * pg_feedback.c
  *
- * Copyright (c) 2017, Sergey Bronnikov
+ * Copyright (c) 2017-2019, Sergey Bronnikov
  *
  *-------------------------------------------------------------------------
  */
 
-#include "common/controldata_utils.h"
-#include "fmgr.h"
-#include "funcapi.h"
-#include "miscadmin.h"
-#include "postgres.h"
-#include "postgres.h"
-#include "utils/builtins.h"
 #include <inttypes.h>
 #include <inttypes.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <unistd.h>
 
+#include <postgres.h>
+
+#include <miscadmin.h>
+#include <funcapi.h>
+#include <utils/builtins.h>
+#include <catalog/pg_control.h>
+#include <common/controldata_utils.h>
+
 #include "helpers.h"
+
+static char *system_db_id()
+{
+	ControlFileData *ControlFile = NULL;
+	char *sysident_str = NULL;
+	sysident_str = (char *)malloc(32);
+	if (!sysident_str) {
+            perror("malloc");
+            return NULL;
+	}
+
+	ControlFile = get_controlfile(DataDir, NULL);
+        if (!ControlFile)
+            ereport(ERROR,
+              (errmsg("calculated CRC checksum does not match value stored in file")));
+	snprintf(sysident_str, sizeof (sysident_str), UINT64_FORMAT, ControlFile->system_identifier);
+
+	return sysident_str;
+}
 
 #ifdef PG_MODULE_MAGIC
 PG_MODULE_MAGIC;

@@ -8,13 +8,6 @@
 #include <sys/utsname.h>
 #include <time.h>
 
-#include "helpers.h"
-
-#include <catalog/pg_control.h>
-#include <common/controldata_utils.h>
-#include <miscadmin.h>
-#include <postgres.h>
-
 #ifdef _WIN32
 #include <windows.h>
 #elif __APPLE__ || __OpenBSD__ || __FreeBSD__ || __NetBSD__
@@ -29,6 +22,8 @@
 #include <sys/sysinfo.h>
 #include <unistd.h>
 #endif
+
+#include "helpers.h"
 
 #ifdef __linux__
 #define num_elements(_a) (sizeof (_a) / sizeof (_a[0]))
@@ -300,20 +295,4 @@ char *dirfs(char *path)
 	fs = st.f_fstypename;
 #endif
 	return fs;
-}
-
-char *system_db_id()
-{
-	ControlFileData *ControlFile;
-	bool crc_ok = 0;
-	char *sysident_str;
-	sysident_str = (char *)malloc(32);
-
-	ControlFile = get_controlfile(DataDir, &crc_ok);
-	if (!crc_ok)
-		printf(_("WARNING: Calculated CRC checksum does not match value stored in file.\n"
-		    "Either the file is corrupt, or it has a different layout than this program\n"
-		    "is expecting. The results below are untrustworthy.\n\n"));
-	snprintf(sysident_str, sizeof (sysident_str), UINT64_FORMAT, ControlFile->system_identifier);
-	return sysident_str;
 }
