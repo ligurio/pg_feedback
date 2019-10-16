@@ -51,9 +51,11 @@ PG_FUNCTION_INFO_V1(postmaster_uptime);
 Datum
 postmaster_uptime(PG_FUNCTION_ARGS)
 {
-	char pid[256];
-	sprintf(pid, "%d", getppid());
-	PG_RETURN_TEXT_P(cstring_to_text(pid));
+	pid_t ppid = getppid();
+	unsigned long long time = get_proc_uptime(ppid);
+	char *uptime_str = NULL;
+	snprintf(uptime_str, 256, "%lld", time);
+	PG_RETURN_TEXT_P(cstring_to_text(uptime_str));
 }
 
 PG_FUNCTION_INFO_V1(db_sys_id);
@@ -121,14 +123,11 @@ sysinfo(PG_FUNCTION_ARGS)
 	free(os->os_arch);
 	free(os);
 
-	/* build a tuple */
 	attinmeta = TupleDescGetAttInMetadata(tupdesc);
 	tuple = BuildTupleFromCStrings(attinmeta, values);
 
-	/* make the tuple into a datum */
 	result = HeapTupleGetDatum(tuple);
 
-	/* clean up (this is not really necessary) */
 	pfree(values[0]);
 	pfree(values[1]);
 	pfree(values[2]);
@@ -137,5 +136,6 @@ sysinfo(PG_FUNCTION_ARGS)
 	pfree(values[5]);
 	pfree(values[6]);
 	pfree(values);
+
 	PG_RETURN_DATUM(result);
 }

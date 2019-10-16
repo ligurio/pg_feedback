@@ -221,11 +221,9 @@ hwinfo *get_hw_info(void)
 
 long long int get_proc_uptime(pid_t pid)
 {
-	unsigned long long proc_uptime;
+	unsigned long long proc_uptime = 0;
 #ifdef __linux__
-	/*
-	       see proc(5) -> /proc/[pid]/stat
-	 */
+	/* see proc(5) -> /proc/[pid]/stat */
 
 	char filename[256];
 	FILE *f;
@@ -260,11 +258,8 @@ long long int get_proc_uptime(pid_t pid)
 	path[2] = KERN_PROC_PID;
 	path[3] = pid;
 	ret = sysctl(path, len_path, &proc, &siz, NULL, 0);
-
-	proc_uptime = 0;
-#else
-	proc_uptime = 0;
 #endif
+
 	return proc_uptime;
 }
 
